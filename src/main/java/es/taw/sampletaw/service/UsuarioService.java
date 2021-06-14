@@ -16,6 +16,7 @@ import es.taw.sampletaw.dto.UsuarioDTO;
 import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Usuario;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
+import javafx.beans.property.ObjectProperty;
 
 /**
  *
@@ -112,26 +113,29 @@ public class UsuarioService {
     }
 
     public void edit(UsuarioDTO e) {
-        usuarioRepository.save(usuarioRepository.findById(e.getId()));
+        Optional<Usuario> usuario = usuarioRepository.findById(e.getId());
+        usuarioRepository.save(usuario.get());
     }
 
     public void guardarUsuario(String id, String nickname, String contrasena,
             String tipoUsuario) {
+        Optional<Usuario> usuarioOpt;
         Usuario usuario;
 
         if (id == null || id.isEmpty()) { // Crear nuevo cliente
             usuario = new Usuario();
         } else { // Editar cliente existente
-            usuario = this.usuarioRepository.find(new Integer(id));
+            usuarioOpt = this.usuarioRepository.findById(new Integer(id));
+            usuario = usuarioOpt.get();
         }
         usuario.setNickname(nickname);
         usuario.setContrasena(contrasena);
         usuario.setTipoUsuario(tipoUsuario);
 
         if (id == null || id.isEmpty()) { // Crear nuevo cliente
-            this.usuarioRepository.create(usuario);
+            this.usuarioRepository.save(usuario);
         } else { // Editar cliente existente
-            this.usuarioRepository.edit(usuario);
+            this.usuarioRepository.save(usuario);
         }
     }
 
@@ -145,14 +149,15 @@ public class UsuarioService {
         usuarioEventos.setCiudad(ciudad);
         usuarioEventos.setSexo(sexo);
         usuarioEventos.setFechaNacimiento(fechaNacimiento);
-        usuarioDeEventosRepository.create(usuarioEventos);
+        usuarioDeEventosRepository.save(usuarioEventos);
+
 
         Usuario usuario;
 
         if (id == null || id.isEmpty()) { // Crear nuevo cliente
             usuario = new Usuario();
         } else { // Editar cliente existente
-            usuario = this.usuarioRepository.find(new Integer(id));
+            usuario = this.usuarioRepository.findById(new Integer(id)).get();
         }
         usuario.setNickname(nickname);
         usuario.setContrasena(contrasena);
@@ -162,30 +167,30 @@ public class UsuarioService {
 
 
         if (id == null || id.isEmpty()) { // Crear nuevo cliente
-            this.usuarioRepository.create(usuario);
+            this.usuarioRepository.save(usuario);
         } else { // Editar cliente existente
-            this.usuarioRepository.edit(usuario);
+            this.usuarioRepository.save(usuario);
         }
     }
 
     public void editarUsuario(String id, String nickname, String contrasena,
             String tipoUsuario, String nombre, String apellidos, String correoElectronico, String ciudad, String sexo, Date fechaNacimiento) {
 
-        UsuarioDeEventos usuarioEventos = this.usuarioRepository.find(new Integer(id)).getUsuarioDeEventos();
+        UsuarioDeEventos usuarioEventos = this.usuarioRepository.findById(new Integer(id)).get().getUsuarioDeEventos();
         usuarioEventos.setNombre(nombre);
         usuarioEventos.setApellidos(apellidos);
         usuarioEventos.setCorreo(correoElectronico);
         usuarioEventos.setCiudad(ciudad);
         usuarioEventos.setSexo(sexo);
         usuarioEventos.setFechaNacimiento(fechaNacimiento);
-        usuarioDeEventosRepository.edit(usuarioEventos);
+        usuarioDeEventosRepository.save(usuarioEventos);
 
-        Usuario usuario = this.usuarioRepository.find(new Integer(id));
+        Usuario usuario = this.usuarioRepository.findById(new Integer(id)).get();
 
         usuario.setNickname(nickname);
         usuario.setContrasena(contrasena);
         usuario.setTipoUsuario(tipoUsuario);
         usuario.setUsuarioDeEventos(usuarioEventos);
-        this.usuarioRepository.edit(usuario);
+        this.usuarioRepository.save(usuario);
     }
 }

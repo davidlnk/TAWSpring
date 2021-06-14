@@ -7,6 +7,9 @@ package es.taw.sampletaw.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.taw.sampletaw.dao.UsuarioDeEventosRepository;
+import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
 
@@ -14,43 +17,41 @@ import es.taw.sampletaw.entity.UsuarioDeEventos;
  *
  * @author David
  */
-//@Stateless
 public class UsuarioDeEventosService {
-    
-//    @EJB
-//    UsuarioDeEventosFacade usuarioDeEventosFacade;
-//
-//    protected List<UsuarioDeEventosDTO> convertirAListaDTO (List<UsuarioDeEventos> lista) {
-//        if (lista != null) {
-//            List<UsuarioDeEventosDTO> listaDTO = new ArrayList<UsuarioDeEventosDTO>();
-//            for (UsuarioDeEventos usuarioDeEventos:lista) {
-//                listaDTO.add(usuarioDeEventos.getDTO());
-//            }
-//            return listaDTO;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public UsuarioDeEventos findById(Integer id) {
-//        return usuarioDeEventosFacade.findById(id);
-//    }
-//
-//    public Boolean esCorreoUnico(String correo) {
-//        return usuarioDeEventosFacade.esCorreoUnico(correo);
-//    }
-//
-//    public void addPublico(UsuarioDeEventos usuarioDeEventos, Publico publico) {
-//        List<Publico> listaAsistencias = usuarioDeEventos.getPublicoList();
-//        listaAsistencias.add(publico);
-//        usuarioDeEventos.setPublicoList(listaAsistencias);
-//        usuarioDeEventosFacade.edit(usuarioDeEventos);
-//    }
-//
-//    public void removePublico(UsuarioDeEventos usuarioDeEventos, Publico publico) {
-//        List<Publico> listaAsistencias = usuarioDeEventos.getPublicoList();
-//        listaAsistencias.remove(publico);
-//        usuarioDeEventos.setPublicoList(listaAsistencias);
-//        usuarioDeEventosFacade.edit(usuarioDeEventos);
-//    }
+
+    UsuarioDeEventosRepository usuarioDeEventosRepository;
+
+    protected List<UsuarioDeEventosDTO> convertirAListaDTO (List<UsuarioDeEventos> lista) {
+        if (lista != null) {
+            List<UsuarioDeEventosDTO> listaDTO = new ArrayList<UsuarioDeEventosDTO>();
+            for (UsuarioDeEventos usuarioDeEventos:lista) {
+                listaDTO.add(usuarioDeEventos.getDTO());
+            }
+            return listaDTO;
+        } else {
+            return null;
+        }
+    }
+
+    public UsuarioDeEventos findById(Integer id) {
+        return usuarioDeEventosRepository.findById(id).get();
+    }
+
+    public Boolean esCorreoUnico(String correo) {
+        return usuarioDeEventosRepository.esCorreoUnico(correo);
+    }
+
+    public void addPublico(UsuarioDeEventos usuarioDeEventos, Publico publico) {
+        List<Publico> listaAsistencias = usuarioDeEventos.getPublicoList();
+        listaAsistencias.add(publico);
+        usuarioDeEventos.setPublicoList(listaAsistencias);
+        usuarioDeEventosRepository.save(usuarioDeEventos);
+    }
+
+    public void removePublico(UsuarioDeEventos usuarioDeEventos, Publico publico) {
+        List<Publico> listaAsistencias = usuarioDeEventos.getPublicoList();
+        listaAsistencias.remove(publico);
+        usuarioDeEventos.setPublicoList(listaAsistencias);
+        usuarioDeEventosRepository.save(usuarioDeEventos);
+    }
 }
