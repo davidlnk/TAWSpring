@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09-may-2021, 1:41:10
+    Author     : David
+*/
+
+/*.imagen-corporativa {
+    width: 155px;
+    height: 90px;
+    margin-left: 700px;
+}
+
+.navbar-text {
+    margin-left: 300px;
+}
+
+.explorar {
+    margin-left: 5px;
+}
+
+.nav-cerrar-sesion {
+    margin-left: 150px;
+}
+
+.navbar {
+    height: 110px;
+    justify-content: flex-start;
+    border-bottom-style: solid;
+    border-bottom-color: green;
+    background-color: #E6E6E6;
+}*/
+
+.contenedor {
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.grupo-imagen img {
+    height: 432px;
+    width: 648px;
+}
+
+.form-control {
+    width: 20%;
+}
+
+.grupo-info button {
+    margin-top: 10px;
+}
+
+.scrollit {
+    overflow: scroll;
+    max-height: 442px;
+    overflow-x: hidden;
+}
+
+
+
+.imagen-escenario {
+    position: relative;
+    padding: 0px;
+    width: 200px;
+    height: 200px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    left: 28%;
+}

@@ -1,0 +1,101 @@
+/* 
+    Created on : 02-may-2021, 18:12:22
+    Author     : daniel
+*/
+body {
+    color: black;
+    /* color: #fff; */
+    /* background: #63738a; */
+    background: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+
+.cabeza {
+    padding: 0em;
+    position: fixed;
+    width: 100%;
+    background: white;
+    margin-top: -155px;
+}
+
+.cuerpo {
+    margin: auto;
+    margin-top: 155px;
+    width: 76%;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    font-size: larger;
+}
+
+li:first-child {
+    margin-left: 16%;
+}
+
+li:last-child {
+    margin-right: 16%;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    color: burlywood;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #006633;
+}
+
+.imagen-corporativa {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 165px;
+    height: 98px;
+}
+
+.filtroEstudioCol {
+    float: left;
+    width: 50%;
+}
+
+.filtroEstudio:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#eliminar a {
+    color: #990000;
+}
+
+#filtrosexo {
+    padding-left: 1em;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+.container {
+    min-width: 1280px;
+}

@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10-may-2021, 18:41:18
+    Author     : rafar
+*/
+.alert {
+   width:480px;    
+}
+
+.form-control{        
+	border-radius: 3px;
+}
+
+.signup-form{        
+	font-size: 16px;
+	font-weight: bold;		
+	min-width: 140px;
+	outline: none !important;
+}
+
+
+
+tbody {
+    height: 330px;
+    width: 700px;/* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: auto;  /* Hide the horizontal scroll */
+}
+
+.container {
+    width: 570px;
+}
+
+.imagen-corporativa {
+    display: block;
+      margin-left: auto;
+    margin-right: auto;
+    width: 225px;
+      height: 140px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+table{
+    border-collapse: separate;
+    border-spacing:  10px 20px;
+}
+
+

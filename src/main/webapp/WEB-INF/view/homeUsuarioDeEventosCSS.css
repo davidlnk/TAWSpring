@@ -1,0 +1,80 @@
+/*.imagen-corporativa {
+    width: 155px;
+    height: 90px;
+    margin-left: 700px;
+}
+
+.navbar-text {
+    margin-left: 300px;
+}
+
+.explorar {
+    margin-left: 5px;
+}
+
+.nav-cerrar-sesion {
+    margin-left: 150px;
+}
+
+.top-nav {
+    height: 110px;
+    justify-content: flex-start;
+    border-bottom-style: solid;
+    border-bottom-color: green;
+    background-color: #E6E6E6;
+}*/
+
+.form-inline {
+    position: absolute;
+    padding-top: 50px;
+    left: 34%;
+}
+
+.form-inline .form-control {
+    width: 500px;
+}
+
+.page-explorar {
+    padding-left: 5px;
+}
+
+
+.gallery-cell {
+    padding-top: 30px;
+}
+
+.gallery-cell img {
+    width: 300px;
+    height: 200px;
+}
+
+.gallery-cell .texto-interior {
+    position: absolute;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    color: white;
+    left: 40%;
+    font-size: 20px;
+    text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+    font-family: sans-serif;
+}
+
+.background-ciudad, .background-populares, .background-proximos {
+    padding-bottom: 20px;
+}
+
+.caruseles {
+    margin-top: 70px;
+}
+
+.background-ciudad {
+    background-color: dodgerblue;
+}
+
+.background-populares {
+    background-color: crimson;
+}
+
+.background-proximos {
+    background-color: khaki;
+}

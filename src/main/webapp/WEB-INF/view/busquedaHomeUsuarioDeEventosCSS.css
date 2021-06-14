@@ -1,0 +1,131 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-abr-2021, 20:19:55
+    Author     : David
+*/
+
+/*.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}*/
+
+
+/*.imagen-corporativa {
+    width: 155px;
+    height: 90px;
+    margin-left: 700px;
+}
+
+.navbar-text {
+    margin-left: 300px;
+}
+
+.explorar {
+    margin-left: 5px;
+}
+
+.nav-cerrar-sesion {
+    margin-left: 150px;
+}
+
+.top-nav {
+    height: 110px;
+    justify-content: flex-start;
+    border-bottom-style: solid;
+    border-bottom-color: green;
+    background-color: #E6E6E6;
+}*/
+
+.form-inline {
+    position: absolute;
+    padding-top: 90px;
+    padding-bottom: 20px;
+    left: 34%;
+}
+
+.form-inline .form-control {
+    width: 500px;
+}
+
+.combo-box-filtro {
+	height: 38px;
+	box-shadow: none;
+        border: 1px solid #969fa4;
+        color: #fff;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        margin-right: 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.combo-box-filtro option {
+    color: #fff;
+}
+
+.btn-group, .btn-group-vertical {
+    position: absolute;
+    margin-top: 60px;
+    left: 42%;
+    padding-top: 18px;
+}
+
+.row {
+    margin-top: 150px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.card {
+    width: 400px;
+    height: 400px;
+    /*margin-left: 50px;*/
+}
+
+.card-body {
+    margin-bottom: 2px;
+}
+
+.card .btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
+.card .cancel {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: red;
+}
+
+.card .estado-evento {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    color: gray;
+}
+
+.card-text {
+    padding-bottom: 20px;
+}
+
+.card-img-top {
+    width: 400px;
+    height: 200px;
+}
+
+.pagination {
+    position: absolute;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    left: 820px;
+}
