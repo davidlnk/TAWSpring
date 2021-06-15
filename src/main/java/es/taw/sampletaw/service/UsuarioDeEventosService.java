@@ -46,7 +46,7 @@ public class UsuarioDeEventosService {
     }
 
     public Boolean esCorreoUnico(String correo) {
-        return usuarioDeEventosRepository.esCorreoUnico(correo);
+        return usuarioDeEventosRepository.esCorreoUnico(correo) == null;
     }
 
     public void addPublico(UsuarioDeEventos usuarioDeEventos, Publico publico) {

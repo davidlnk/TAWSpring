@@ -38,7 +38,7 @@
 
     <img src="Imagenes/tawevents-logo.png" class="imagen-corporativa">
     <div class="signup-form">
-        <form action="ServletCrearUsuarioDeEventos">
+        <form action="/usuario/registro/guardar" method="post">
             <div class="form-group">
                 <h2>Crear cuenta</h2>
                 <div class="form-group-1">

@@ -73,7 +73,7 @@ public class UsuarioService {
     }
 
     public Boolean esNickUnico(String nick) {
-        return usuarioRepository.esNickUnico(nick);
+        return usuarioRepository.esNickUnico(nick) == null;
     }
 
     public List<UsuarioDTO> filtroNick(String nick) {

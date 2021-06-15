@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface UsuarioDeEventosRepository extends JpaRepository<UsuarioDeEventos, Integer> {
 
     @Query("SELECT a FROM UsuarioDeEventos a WHERE a.correo = :correo")
-    public Boolean esCorreoUnico(String correo);
+    public UsuarioDeEventos esCorreoUnico(String correo);
 }

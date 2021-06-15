@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Usuario findByNick(String nick);
 
     @Query("SELECT a FROM Usuario a WHERE a.nickname = :nick")
-    public Boolean esNickUnico(String nick);
+    public Usuario esNickUnico(String nick);
 
     @Query("SELECT c FROM Usuario c WHERE UPPER(c.nickname) LIKE UPPER(CONCAT('%', :filtro,'%'))")
     public List<Usuario> findBySimilarNick(String filtro);
