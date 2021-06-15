@@ -13,13 +13,13 @@ import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author David
  */
-@Controller
+@Service
 public class UsuarioDeEventosService {
 
     private UsuarioDeEventosRepository usuarioDeEventosRepository;

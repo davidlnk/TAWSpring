@@ -24,13 +24,13 @@ import es.taw.sampletaw.entity.Evento;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author rafar
  */
-@Controller
+@Service
 public class EventoService {
 
     private EtiquetaService etiquetaService;

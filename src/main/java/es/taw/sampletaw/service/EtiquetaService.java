@@ -12,13 +12,13 @@ import es.taw.sampletaw.dao.EtiquetaRepository;
 import es.taw.sampletaw.dto.EtiquetaDTO;
 import es.taw.sampletaw.entity.Etiqueta;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author rafar
  */
-@Controller
+@Service
 public class EtiquetaService {
 
     private EtiquetaRepository etiquetaRepository;
