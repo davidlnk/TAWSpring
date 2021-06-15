@@ -23,22 +23,49 @@ import es.taw.sampletaw.entity.Etiqueta;
 import es.taw.sampletaw.entity.Evento;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author rafar
  */
+@Controller
 public class EventoService {
+
+    private EtiquetaService etiquetaService;
 
     private EtiquetaRepository etiquetaRepository;
 
     private UsuarioRepository usuarioRepository;
 
-    private EtiquetaService etiquetaService;
-
     private EventoRepository eventoRepository;
 
     private UsuarioDeEventosRepository usuarioDeEventosRepository;
+
+    @Autowired
+    public void setEtiquetaRepository(EtiquetaRepository etiquetaRepository) {
+        this.etiquetaRepository = etiquetaRepository;
+    }
+
+    @Autowired
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    @Autowired
+    public void setEventoRepository(EventoRepository eventoRepository) {
+        this.eventoRepository = eventoRepository;
+    }
+
+    @Autowired
+    public void setUsuarioDeEventosRepository(UsuarioDeEventosRepository usuarioDeEventosRepository) {
+        this.usuarioDeEventosRepository = usuarioDeEventosRepository;
+    }
+
+
+
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 

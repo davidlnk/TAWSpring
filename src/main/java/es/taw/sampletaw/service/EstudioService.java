@@ -5,25 +5,6 @@
  */
 package es.taw.sampletaw.service;
 
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import es.taw.sampletaw.dto.EstudioDTO;
-import es.taw.sampletaw.dto.UsuarioDTO;
-import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
-import es.taw.sampletaw.entity.Estudio;
-import es.taw.sampletaw.entity.Evento;
-import es.taw.sampletaw.entity.Publico;
-import es.taw.sampletaw.entity.Usuario;
-import es.taw.sampletaw.entity.UsuarioDeEventos;
-
 /**
  *
  * @author danie

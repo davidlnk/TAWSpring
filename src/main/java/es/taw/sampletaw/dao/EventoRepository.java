@@ -68,10 +68,10 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
     // ======= FILTROS EXPLORAR =========
 
-    @Query("SELECT e FROM Evento e WHERE UPPER(e.titulo) LIKE UPPER(:tit) AND :date > e.fechaLimEntradas AND :user IN (SELECT p.usuarioDeEventos.id FROM Publico p WHERE p.evento = e)")
+    @Query("SELECT e FROM Evento e WHERE UPPER(e.titulo) LIKE UPPER(:filtro) AND :date > e.fechaLimEntradas AND :user IN (SELECT p.usuarioDeEventos.id FROM Publico p WHERE p.evento = e)")
     public List<Evento> findByTituloHistorial(String filtro, UsuarioDeEventos user, Date date);
 
-    @Query("SELECT e FROM Evento e WHERE UPPER(e.titulo) LIKE UPPER(:tit) AND :date < e.fechaLimEntradas AND :user IN (SELECT p.usuarioDeEventos.id FROM Publico p WHERE p.evento = e)")
+    @Query("SELECT e FROM Evento e WHERE UPPER(e.titulo) LIKE UPPER(:filtro) AND :date < e.fechaLimEntradas AND :user IN (SELECT p.usuarioDeEventos.id FROM Publico p WHERE p.evento = e)")
     public List<Evento> findByTituloReserva(String filtro, UsuarioDeEventos user, Date date);
 
     @Query("SELECT e FROM Evento e WHERE :etiqueta MEMBER OF e.etiquetaList AND :date > e.fechaLimEntradas AND :user IN (SELECT p.usuarioDeEventos.id FROM Publico p WHERE p.evento = e)")

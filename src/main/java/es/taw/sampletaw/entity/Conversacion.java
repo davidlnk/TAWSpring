@@ -5,8 +5,6 @@
  */
 package es.taw.sampletaw.entity;
 
-import com.sun.istack.NotNull;
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -21,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,8 +38,7 @@ public class Conversacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @Column(name = "FECHACREACION", nullable = false)

@@ -7,8 +7,6 @@ package es.taw.sampletaw.dto;
 
 import java.util.Date;
 import java.util.List;
-import es.taw.sampletaw.entity.Publico;
-import es.taw.sampletaw.entity.Usuario;
 
 /**
  *

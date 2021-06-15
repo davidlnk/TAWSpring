@@ -5,9 +5,6 @@
  */
 package es.taw.sampletaw.dto;
 
-import es.taw.sampletaw.entity.Evento;
-import es.taw.sampletaw.entity.UsuarioDeEventos;
-
 /**
  *
  * @author David

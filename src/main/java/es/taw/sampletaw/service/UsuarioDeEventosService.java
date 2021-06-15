@@ -12,14 +12,22 @@ import es.taw.sampletaw.dao.UsuarioDeEventosRepository;
 import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author David
  */
+@Controller
 public class UsuarioDeEventosService {
 
-    UsuarioDeEventosRepository usuarioDeEventosRepository;
+    private UsuarioDeEventosRepository usuarioDeEventosRepository;
+
+    @Autowired
+    public void setUsuarioDeEventosRepository(UsuarioDeEventosRepository usuarioDeEventosRepository) {
+        this.usuarioDeEventosRepository = usuarioDeEventosRepository;
+    }
 
     protected List<UsuarioDeEventosDTO> convertirAListaDTO (List<UsuarioDeEventos> lista) {
         if (lista != null) {

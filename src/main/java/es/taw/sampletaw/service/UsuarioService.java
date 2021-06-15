@@ -16,17 +16,29 @@ import es.taw.sampletaw.dto.UsuarioDTO;
 import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Usuario;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
-import javafx.beans.property.ObjectProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author Ivan
  */
+@Controller
 public class UsuarioService {
 
     private UsuarioRepository usuarioRepository;
 
     private UsuarioDeEventosRepository usuarioDeEventosRepository;
+
+    @Autowired
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    @Autowired
+    public void setUsuarioDeEventosRepository(UsuarioDeEventosRepository usuarioDeEventosRepository) {
+        this.usuarioDeEventosRepository = usuarioDeEventosRepository;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

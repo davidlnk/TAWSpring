@@ -11,14 +11,24 @@ import java.util.List;
 import es.taw.sampletaw.dao.EtiquetaRepository;
 import es.taw.sampletaw.dto.EtiquetaDTO;
 import es.taw.sampletaw.entity.Etiqueta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author rafar
  */
+@Controller
 public class EtiquetaService {
 
-     private EtiquetaRepository etiquetaRepository;
+    private EtiquetaRepository etiquetaRepository;
+
+    @Autowired
+    public void setEtiquetaRepository(EtiquetaRepository etiquetaRepository) {
+        this.etiquetaRepository = etiquetaRepository;
+    }
+
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 

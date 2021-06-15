@@ -7,7 +7,6 @@ package es.taw.sampletaw.dto;
  
 import java.util.Date;
 import java.util.List;
-import es.taw.sampletaw.entity.Etiqueta;
 
 /**
  *

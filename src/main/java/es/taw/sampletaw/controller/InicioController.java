@@ -33,10 +33,10 @@ public class InicioController {
                 // vacíos o nulos.
                 strError = "Error de autenticación: alguno de los valores está vacío";
                 model.addAttribute("error", strError);
-                strTo = "inicioSesion.jsp";
+                strTo = "inicioSesion";
 
             } else {
-                usuario = this.usuarioService.comprobarCredenciales(nick, contrasena);
+                usuario = usuarioService.comprobarCredenciales(nick, contrasena);
                 if (usuario == null) { // No hay usuario en la BD
                     strError = "Error de autenticación: credenciales incorrectas";
                     model.addAttribute("error", strError);
@@ -52,7 +52,7 @@ public class InicioController {
                     } else if (usuario.getTipoUsuario().equals("analistadeeventos")) {
                         strTo = "homeAnalista";
                     } else {
-                        // TODO: strTo = "ServletHomeUsuarioDeEventos";
+                        strTo = "/usuario/home";
                     }
                 }
             }
@@ -66,7 +66,7 @@ public class InicioController {
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
                 strTo = "homeAnalista";
             } else {
-                // TODO: strTo = "ServletHomeUsuarioDeEventos";
+                strTo = "/usuario/home";
             }
         }
         return strTo;

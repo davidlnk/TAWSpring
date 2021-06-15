@@ -17,12 +17,16 @@ import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
 import es.taw.sampletaw.entity.Evento;
 import es.taw.sampletaw.entity.Publico;
 import es.taw.sampletaw.entity.UsuarioDeEventos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author David
  */
+@Controller
 public class PublicoService {
+
 
     private PublicoRepository publicoRepository;
 
@@ -30,9 +34,26 @@ public class PublicoService {
 
     private EventoRepository eventoRepository;
 
+    @Autowired
+    public void setPublicoRepository(PublicoRepository publicoRepository) {
+        this.publicoRepository = publicoRepository;
+    }
+
+    @Autowired
+    public void setUsuarioDeEventosRepository(UsuarioDeEventosRepository usuarioDeEventosRepository) {
+        this.usuarioDeEventosRepository = usuarioDeEventosRepository;
+    }
+
+    @Autowired
+    public void setEventoRepository(EventoRepository eventoRepository) {
+        this.eventoRepository = eventoRepository;
+    }
+
     EventoService eventoService;
 
     UsuarioDeEventosService usuarioDeEventosService;
+
+
 
     public static List<PublicoDTO> convertirAListaDTO(List<Publico> lista) {
         if (lista != null) {

@@ -6,10 +6,6 @@
 package es.taw.sampletaw.dto;
 
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import es.taw.sampletaw.entity.Evento;
 
 /**
  *
