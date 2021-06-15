@@ -4,8 +4,8 @@
     Author     : daniel
 --%>
 
-<%@page import="tawevents.dto.UsuarioDTO"%>
-<%@page import="tawevents.entity.Usuario"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

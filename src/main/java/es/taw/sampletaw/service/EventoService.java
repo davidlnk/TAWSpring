@@ -228,15 +228,30 @@ public class EventoService {
 
     public List<EventoDTO> findByDisponiblesEtiqueta(EtiquetaDTO e) {
         Etiqueta et = etiquetaRepository.findById(e.getId()).get();
-        return convertirAListaDTO(eventoRepository.findByDisponiblesEtiqueta(et, new Date())).subList(0,7);
+        List<EventoDTO> res = convertirAListaDTO(eventoRepository.findByDisponiblesEtiqueta(et, new Date()));
+        if (res.size() >= 7) {
+            return res.subList(0,7);
+        } else {
+            return res;
+        }
     }
 
     public List<EventoDTO> findByDisponiblesMasPopulares() {
-        return convertirAListaDTO(eventoRepository.findByDisponiblesMasPopulares(new Date())).subList(0,7);
+        List<EventoDTO> res = convertirAListaDTO(eventoRepository.findByDisponiblesMasPopulares(new Date()));
+        if (res.size() >= 7) {
+            return res.subList(0,7);
+        } else {
+            return res;
+        }
     }
 
     public List<EventoDTO> findByDisponiblesMasCercanos() {
-        return convertirAListaDTO(eventoRepository.findByDisponiblesMasCercanos(new Date())).subList(0,7);
+        List<EventoDTO> res = convertirAListaDTO(eventoRepository.findByDisponiblesMasCercanos(new Date()));
+        if (res.size() >= 7) {
+            return res.subList(0,7);
+        } else {
+            return res;
+        }
     }
 
     public Map<EventoDTO, List<PublicoDTO>> construirMap(List<EventoDTO> lista) {

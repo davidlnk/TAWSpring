@@ -5,9 +5,9 @@
 --%>
 
 <%@page import="java.util.Map"%>
-<%@page import="tawevents.dto.PublicoDTO"%>
-<%@page import="tawevents.dto.EventoDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.dto.PublicoDTO"%>
+<%@page import="es.taw.sampletaw.dto.EventoDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>

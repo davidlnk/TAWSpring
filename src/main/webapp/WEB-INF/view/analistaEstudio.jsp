@@ -4,9 +4,9 @@
     Author     : daniel
 --%>
 
-<%@page import="tawevents.dto.UsuarioDeEventosDTO"%>
-<%@page import="tawevents.dto.EstudioDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDeEventosDTO"%>
+<%@page import="es.taw.sampletaw.dto.EstudioDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>

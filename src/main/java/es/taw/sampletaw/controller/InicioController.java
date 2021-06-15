@@ -2,6 +2,7 @@ package es.taw.sampletaw.controller;
 
 import es.taw.sampletaw.dto.UsuarioDTO;
 import es.taw.sampletaw.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class InicioController {
 
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
+
+    @Autowired
+    public void setUsuarioService(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
+
 
     @GetMapping("/")
     public String doInit() {
@@ -52,7 +60,7 @@ public class InicioController {
                     } else if (usuario.getTipoUsuario().equals("analistadeeventos")) {
                         strTo = "homeAnalista";
                     } else {
-                        strTo = "/usuario/home";
+                        strTo = "redirect:usuario/home";
                     }
                 }
             }
@@ -66,7 +74,7 @@ public class InicioController {
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
                 strTo = "homeAnalista";
             } else {
-                strTo = "/usuario/home";
+                strTo = "redirect:usuario/home";
             }
         }
         return strTo;

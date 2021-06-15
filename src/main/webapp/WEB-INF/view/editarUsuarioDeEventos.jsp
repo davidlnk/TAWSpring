@@ -4,8 +4,8 @@
     Author     : Ivan
 --%>
 
-<%@page import="tawevents.dto.UsuarioDeEventosDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDeEventosDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 

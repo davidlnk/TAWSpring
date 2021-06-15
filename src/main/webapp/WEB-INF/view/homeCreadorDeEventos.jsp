@@ -4,15 +4,15 @@
     Author     : rafar
 --%>
 
-<%@page import="tawevents.service.EtiquetaService"%>
+<%@page import="es.taw.sampletaw.service.EtiquetaService"%>
 <%@page import="javax.ejb.EJB"%>
-<%@page import="tawevents.dto.EtiquetaDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
-<%@page import="tawevents.dto.EventoDTO"%>
-<%@page import="tawevents.entity.Etiqueta"%>
-<%@page import="tawevents.entity.Usuario"%>
+<%@page import="es.taw.sampletaw.dto.EtiquetaDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.dto.EventoDTO"%>
+<%@page import="es.taw.sampletaw.entity.Etiqueta"%>
+<%@page import="es.taw.sampletaw.entity.Usuario"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="tawevents.entity.Evento"%>
+<%@page import="es.taw.sampletaw.entity.Evento"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

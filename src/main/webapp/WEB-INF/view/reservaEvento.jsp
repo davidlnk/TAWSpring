@@ -4,15 +4,15 @@
     Author     : David
 --%>
 
-<%@page import="tawevents.dto.PublicoDTO"%>
-<%@page import="tawevents.dto.EventoDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
-<%@page import="tawevents.entity.Publico"%>
+<%@page import="es.taw.sampletaw.dto.PublicoDTO"%>
+<%@page import="es.taw.sampletaw.dto.EventoDTO"%>
+<%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
+<%@page import="es.taw.sampletaw.entity.Publico"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="tawevents.entity.Evento"%>
+<%@page import="es.taw.sampletaw.entity.Evento"%>
 <%@page import="java.util.List"%>
-<%@page import="tawevents.entity.Usuario"%>
+<%@page import="es.taw.sampletaw.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

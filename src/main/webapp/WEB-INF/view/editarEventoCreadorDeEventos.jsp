@@ -4,9 +4,9 @@
     Author     : rafar
 --%>
 
-<%@page import="tawevents.dto.EventoDTO"%>
+<%@page import="es.taw.sampletaw.dto.EventoDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="tawevents.entity.Evento"%>
+<%@page import="es.taw.sampletaw.entity.Evento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
