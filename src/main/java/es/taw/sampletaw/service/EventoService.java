@@ -33,15 +33,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventoService {
 
+//    private EtiquetaService etiquetaService;
+    private EtiquetaRepository etiquetaRepository;
+    private UsuarioRepository usuarioRepository;
+    private EventoRepository eventoRepository;
+    private UsuarioDeEventosRepository usuarioDeEventosRepository;
     private EtiquetaService etiquetaService;
 
-    private EtiquetaRepository etiquetaRepository;
-
-    private UsuarioRepository usuarioRepository;
-
-    private EventoRepository eventoRepository;
-
-    private UsuarioDeEventosRepository usuarioDeEventosRepository;
 
     @Autowired
     public void setEtiquetaRepository(EtiquetaRepository etiquetaRepository) {
@@ -63,10 +61,12 @@ public class EventoService {
         this.usuarioDeEventosRepository = usuarioDeEventosRepository;
     }
 
+    @Autowired
+    public void setEtiquetaService(EtiquetaService etiquetaService) {
+        this.etiquetaService = etiquetaService;
+    }
 
-
-
-    // Add business logic below. (Right-click in editor and choose
+// Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
 

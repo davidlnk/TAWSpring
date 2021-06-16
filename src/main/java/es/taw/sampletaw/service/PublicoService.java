@@ -29,10 +29,14 @@ public class PublicoService {
 
 
     private PublicoRepository publicoRepository;
-
     private UsuarioDeEventosRepository usuarioDeEventosRepository;
-
     private EventoRepository eventoRepository;
+    private EventoService eventoService;
+    private UsuarioDeEventosService usuarioDeEventosService;
+
+
+//    EventoService eventoService;
+//    UsuarioDeEventosService usuarioDeEventosService;
 
     @Autowired
     public void setPublicoRepository(PublicoRepository publicoRepository) {
@@ -49,11 +53,15 @@ public class PublicoService {
         this.eventoRepository = eventoRepository;
     }
 
-    EventoService eventoService;
+    @Autowired
+    public void setEventoService(EventoService eventoService) {
+        this.eventoService = eventoService;
+    }
 
-    UsuarioDeEventosService usuarioDeEventosService;
-
-
+    @Autowired
+    public void setUsuarioDeEventosService(UsuarioDeEventosService usuarioDeEventosService) {
+        this.usuarioDeEventosService = usuarioDeEventosService;
+    }
 
     public static List<PublicoDTO> convertirAListaDTO(List<Publico> lista) {
         if (lista != null) {
@@ -119,8 +127,9 @@ public class PublicoService {
 
     public void borrar(PublicoDTO pub) {
         Publico publico = publicoRepository.findById(pub.getId()).get();
-        publicoRepository.delete(publico);
         eventoService.removePublico(publico.getEvento(), publico);
         usuarioDeEventosService.removePublico(publico.getUsuarioDeEventos(), publico);
+        publicoRepository.delete(publico);
+
     }
 }

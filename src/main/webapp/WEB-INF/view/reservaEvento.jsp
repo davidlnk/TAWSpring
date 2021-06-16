@@ -64,10 +64,10 @@
 
         <%// No usamos un jsp como menu para esta navbar puesto que necesitamos saber el nombre del usuario%>
         <ul class="topnav">
-            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="ServletHomeUsuarioDeEventos">Home</a></li>
-            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="ServletPaginacionEventos?pagina=1">Explorar</a></li>
+            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="/usuario/home">Home</a></li>
+            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="/usuario/explorar/1">Explorar</a></li>
             <li><img src="Imagenes/tawevents-logo.png" class="imagen-corporativa"></li>
-            <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="ServletCerrarSesion">Cerrar sesión</a></li>
+            <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="/salir">Cerrar sesión</a></li>
             <li class="right elem-nav" style="margin-top: 25px;"><span class="navbar-text">
                 Has iniciado sesión como: <%=usuario.getNickname()%>
             </span></li>
@@ -86,7 +86,7 @@
                 <h2 class="precio-evento"><%=evento.getPrecioEntrada()%>€</h2>
                 <p class="plazas-evento">Quedan <%=evento.getAforoMax() - evento.getPublicoList().size()%> entradas 
                     <br>Puedes reservar hasta <%=evento.getMaxEntradasPorUsuario()%> entradas</p>
-                <form action="ServletSolicitarEntrada">
+                <form action="/usuario/solicitud" method="post">
                     <input type="hidden" name="id_evento" value="<%=evento.getId()%>">
                     <%
                         int numeroEntradasReservadasPorUsuario = 0;
@@ -139,7 +139,7 @@
                         <%
                             if (date.before(evento.getFechaLimEntradas())) {
                         %>
-                            <td><a href="ServletCancelarEntrada?id_entrada=<%=pub.getId()%>" class="btn btn-danger">Cancelar</a></td>
+                            <td><a href="/usuario/cancelar/<%=pub.getId()%>" class="btn btn-danger">Cancelar</a></td>
                         <%
                             }
                         %>

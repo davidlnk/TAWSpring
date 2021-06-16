@@ -62,30 +62,30 @@
 
         <%// No usamos un jsp como menu para esta navbar puesto que necesitamos saber el nombre del usuario%>
         <ul class="topnav">
-            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="ServletHomeUsuarioDeEventos">Home</a></li>
-            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="ServletPaginacionEventos?pagina=1">Explorar</a></li>
+            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="/usuario/home">Home</a></li>
+            <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="/usuario/explorar/1">Explorar</a></li>
             <li><img src="Imagenes/tawevents-logo.png" class="imagen-corporativa"></li>
-            <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="ServletCerrarSesion">Cerrar sesión</a></li>
+            <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="/salir">Cerrar sesión</a></li>
             <li class="right elem-nav" style="margin-top: 25px;"><span class="navbar-text">
                 Has iniciado sesión como: <%=usuario.getNickname()%>
             </span></li>
         </ul>
 
         <nav class="navbar navbar-expand-sm navbar">
-            <form class="form-inline" action="ServletPaginacionHistorial">
+            <form class="form-inline" action="/usuario/explorar/historial/1">
                 <input class="form-control mr-sm-2" type="text" placeholder="Introduzca un evento..." name="busqueda" value="<%if (busquedaAnterior != null) {%> <%=busquedaAnterior%> <%}%>">
                 <button class="btn btn-success" type="submit">Buscar</button>
             </form>
         </nav>
 
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btn-todos" id="btnradio1" onclick="window.location = 'ServletPaginacionEventos';" autocomplete="off">
+            <input type="radio" class="btn-check" name="btn-todos" id="btnradio1" onclick="window.location = '/usuario/explorar/1';" autocomplete="off">
             <label class="btn btn-outline-primary" for="btnradio1">Todos</label>
 
-            <input type="radio" class="btn-check" name="btn-reservas" id="btnradio2" onclick="window.location = 'ServletPaginacionReservas';" autocomplete="off">
+            <input type="radio" class="btn-check" name="btn-reservas" id="btnradio2" onclick="window.location = '/usuario/explorar/reservas/1';" autocomplete="off">
             <label class="btn btn-outline-primary" for="btnradio2">Mis reservas</label>
 
-            <input type="radio" class="btn-check" name="btn-historial" id="btnradio3" onclick="window.location = 'ServletPaginacionHistorial';" autocomplete="off" checked>
+            <input type="radio" class="btn-check" name="btn-historial" id="btnradio3" onclick="window.location = '/usuario/explorar/historial/1';" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="btnradio3">Mi historial</label>
         </div>
 
@@ -117,7 +117,7 @@
                                     if (entry.getKey().getAforoMax() > entry.getValue().size()) {
                         %>
 
-                        <a href="ServletUnirseEvento?id_evento=<%=entry.getKey().getId()%>" class="btn btn-primary">Reservar »</a>
+                        <a href="/usuario/reserva/<%=entry.getKey().getId()%>" class="btn btn-primary">Reservar »</a>
 
                         <%
                         } else {
@@ -138,13 +138,13 @@
                             if (date.before(entry.getKey().getFechaLimEntradas())) {
                         %>
 
-                        <a href="ServletUnirseEvento?id_evento=<%=entry.getKey().getId()%>" class="btn btn-primary">Editar reserva</a>
+                        <a href="/usuario/reserva/<%=entry.getKey().getId()%>" class="btn btn-primary">Editar reserva</a>
 
                         <%
                         } else if (date.after(entry.getKey().getFechaLimEntradas())) {
                         %>
 
-                        <a href="ServletUnirseEvento?id_evento=<%=entry.getKey().getId()%>" class="btn btn-primary">Ver reserva</a>
+                        <a href="/usuario/reserva/<%=entry.getKey().getId()%>" class="btn btn-primary">Ver reserva</a>
 
                         <%
                                 }
@@ -161,32 +161,32 @@
         <nav aria-label="bottom-pag">
             <ul class="pagination">
                 <li class="page-item <%if (pagina == 1) {%>disabled<%}%>">
-                    <a class="page-link" href="ServletPaginacionHistorial?pagina=<%=pagina - 1%>" tabindex="-1">Anterior</a>
+                    <a class="page-link" href="/usuario/explorar/historial/<%=pagina - 1%>" tabindex="-1">Anterior</a>
                 </li>
                 <%
                     if (pagina == 1) {
                 %>
                 <li class="page-item active">
-                    <a class="page-link" href="ServletPaginacionHistorial?pagina=1">1 <span class="sr-only">(current)</span></a>
+                    <a class="page-link" href="/usuario/explorar/historial/1">1 <span class="sr-only">(current)</span></a>
                 </li>
                 <%
                     if (!paginaFinal) {
                 %>
-                <li class="page-item"><a class="page-link" href="ServletPaginacionHistorial?pagina=2">2</a></li>
+                <li class="page-item"><a class="page-link" href="/usuario/explorar/historial/2">2</a></li>
                     <%
                         }
                     %>
                     <%
                     } else {
                     %>
-                <li class="page-item"><a class="page-link" href="ServletPaginacionHistorial?pagina=<%=pagina - 1%>"><%=pagina - 1%></a></li>
+                <li class="page-item"><a class="page-link" href="/usuario/explorar/historial/<%=pagina - 1%>"><%=pagina - 1%></a></li>
                 <li class="page-item active">
-                    <a class="page-link" href="ServletPaginacionHistorial?pagina=<%=pagina%>"><%=pagina%><span class="sr-only">(current)</span></a>
+                    <a class="page-link" href="/usuario/explorar/historial/<%=pagina%>"><%=pagina%><span class="sr-only">(current)</span></a>
                 </li>
                 <%
                     if (!paginaFinal) {
                 %>
-                <li class="page-item"><a class="page-link" href="ServletPaginacionHistorial?pagina=<%=pagina + 1%>"><%=pagina + 1%></a></li>
+                <li class="page-item"><a class="page-link" href="/usuario/explorar/historial/<%=pagina + 1%>"><%=pagina + 1%></a></li>
                     <%
                         }
                     %>
@@ -194,7 +194,7 @@
                         }
                     %>
                 <li class="page-item <%if (paginaFinal) {%>disabled<%}%>">
-                    <a class="page-link" href="ServletPaginacionHistorial?pagina=<%=pagina + 1%>">Siguiente</a>
+                    <a class="page-link" href="/usuario/explorar/historial/<%=pagina + 1%>">Siguiente</a>
                 </li>
             </ul>
         </nav>
