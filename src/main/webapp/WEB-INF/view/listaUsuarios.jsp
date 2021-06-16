@@ -40,7 +40,7 @@
             
             <h2>Listado de usuarios</h2>
             <div class="form-group">
-                <form action="ServletUsuarioListar">
+                <form action="/admin/usuarios">
                     <div class="form-group">
                     <select id="mySelect" onchange="myFunction()" class="tipo-filtro" name="tipoFiltro">
                         <option selected disabled>Selecciona filtro</option>
@@ -98,9 +98,9 @@
                                 <%
                                 }
                                 %>
-                                <td><a href="ServletUsuarioBorrar?id=<%= us.getId() %>">
+                                <td><a href="/admin/borrarusuario/<%= us.getId() %>">
                                     <button onclick="return confirm('¿Estás seguro de eliminar al usuario?')" class="btn btn-success btn-lg btn-block">Borrar </button> </a>
-                                <td><a href="ServletUsuarioEditar?id=<%= us.getId() %>">
+                                <td><a href="/admin/editarusuario/<%= us.getId() %>">
                                     <button  class="btn btn-success btn-lg btn-block">Editar</button></a>                      
                             </tr>        
                             <%
@@ -108,11 +108,11 @@
                             %>  
                         </tbody>
                     </table>
-                </div
+                </div>
             </div>
         </div>
         <div class="form-group">
-                    <a href="crearEditarUsuario.jsp">
+                    <a href="/admin/crearusuario">
                         <button  class="btn btn-success btn-lg btn-block"> Crear nuevo usuario</button>
                     </a>
         </div>

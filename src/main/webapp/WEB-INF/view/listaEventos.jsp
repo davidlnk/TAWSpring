@@ -44,7 +44,7 @@
             
             <h2>Listado de eventos</h2>
             <div class="form-group">
-                <form action="ServletEventoListar">
+                <form action="/admin/eventos">
                     <div class="form-group">
                     <select id="mySelect" onchange="myFunction()" class="tipo-filtro" name="tipoFiltro">
                         <option selected disabled value="fSelecciona">Selecciona filtro</option>
@@ -106,9 +106,9 @@
                                     }
                                 %>
                                 <td><%= nombre %></td>
-                                <td><a href="ServletEventoBorrar?idE=<%= ev.getId() %>">
+                                <td><a href="/admin/borrarevento/<%= ev.getId() %>">
                                     <button onclick="return confirm('¿Estás seguro de eliminar el evento?')" class="btn btn-success btn-lg btn-block">Borrar </button> </a>
-                                <td><a href="ServletEventoEditarAdmin?idE=<%= ev.getId() %>">
+                                <td><a href="/admin/editarevento/<%= ev.getId() %>">
                                     <button  class="btn btn-success btn-lg btn-block">Editar</button></a>                      
                             </tr>        
                             <%
@@ -120,7 +120,7 @@
             </div>
         
         <div class="form-group">
-                    <a href="crearEventoAdmin.jsp">
+                    <a href="/admin/crearevento">
                         <button  class="btn btn-success btn-lg btn-block"> Crear nuevo evento</button>
                     </a>
         </div>  

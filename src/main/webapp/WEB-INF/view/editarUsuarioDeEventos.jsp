@@ -65,7 +65,7 @@
     <img src="Imagenes/tawevents-logo.png" class="imagen-corporativa">
     <jsp:include page="menu.jsp" />
     <div class="signup-form">
-        <form action="ServletUsuarioEventosGuardar">
+        <form action="/admin/guardarusuarioeventos">
             <div class="form-group">
                 <h2>Datos del usuario</h2>
                 <input type="hidden" name="id" value="<%= strId %>" />

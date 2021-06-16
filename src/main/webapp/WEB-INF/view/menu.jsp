@@ -28,16 +28,16 @@
 
     <ul class="topnav">
         <li> <button type="submit" class="btn btn-success btn-lg btn-block" disabled>Has iniciado sesión como <%= usuario.getNickname() %></button>
-        <li><form method="POST" action="homeAdmin.jsp">
+        <li><form method="GET" action="/admin/home">
             <button type="submit" class="btn btn-success btn-lg btn-block">Home</button>
             </form> </li>
-        <li><form method="POST" action="ServletUsuarioListar">
+        <li><form method="GET" action="/admin/usuarios">
             <button type="submit" class="btn btn-success btn-lg btn-block">Usuarios</button>
             </form> </li>
-        <li><form method="POST" action="ServletEventoListar">
+        <li><form method="GET" action="/admin/eventos">
             <button type="submit" class="btn btn-success btn-lg btn-block">Eventos</button>
             </form> </li>
-        <li class="right"><form method="POST" action="ServletCerrarSesion">
+        <li class="right"><form method="GET" action="/salir">
             <button type="submit" onclick="return confirm('¿Estás seguro de que quieres cerrar sesión?')" class="btn btn-success btn-lg btn-block">Cerrar sesión</button>
             </form> </li>        
     </ul>

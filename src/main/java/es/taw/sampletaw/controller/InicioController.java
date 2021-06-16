@@ -52,7 +52,7 @@ public class InicioController {
                 } else { // El usuario está en la BD
                     session.setAttribute("usuario", usuario);
                     if (usuario.getTipoUsuario().equals("administrador")) {
-                        strTo = "homeAdmin";
+                        strTo = "redirect:admin/home";
                     } else if (usuario.getTipoUsuario().equals("creadordeeventos")) {
                         // TODO: strTo = "ServletCreadorDeEventosListar";
                     } else if (usuario.getTipoUsuario().equals("teleoperador")) {
@@ -66,7 +66,7 @@ public class InicioController {
             }
         } else {
             if (usuarioRegistrado.getTipoUsuario().equals("administrador")) {
-                strTo = "homeAdmin";
+                strTo = "redirect:admin/home";
             } else if (usuarioRegistrado.getTipoUsuario().equals("creadordeeventos")) {
                 // TODO: strTo = "ServletCreadorDeEventosListar";
             } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {

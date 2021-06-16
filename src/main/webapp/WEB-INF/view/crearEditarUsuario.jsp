@@ -48,7 +48,7 @@
             
         <jsp:include page="menu.jsp" />
         <div class="signup-form">
-            <form action="ServletUsuarioGuardar">
+            <form action="/admin/guardarusuario">
                 <h2>Datos del Usuario</h2>
                 <input type="hidden" name="id" value="<%= strId %>" />
                 <p align="center" style="color:#FF0000"><%= strError %> </p>
