@@ -6,9 +6,7 @@
 
 <%@page import="es.taw.sampletaw.dto.EventoDTO"%>
 <%@page import="es.taw.sampletaw.dto.UsuarioDTO"%>
-<%@page import="es.taw.sampletaw.entity.Evento"%>
 <%@page import="java.util.List"%>
-<%@page import="es.taw.sampletaw.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,8 +31,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
 
-        <link rel="stylesheet" href="homeUsuarioDeEventosCSS.css">
-        <link rel="stylesheet" href="menuEventosCSS.css">
+        <link rel="stylesheet" href="../css/homeUsuarioDeEventosCSS.css">
+        <link rel="stylesheet" href="../css/menuEventosCSS.css">
 
         <title>Página principal</title>
     </head>
@@ -59,7 +57,7 @@
         <ul class="topnav">
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="/usuario/home">Home</a></li>
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="/usuario/explorar/1">Explorar</a></li>
-            <li><img src="Imagenes/tawevents-logo.png" class="imagen-corporativa"></li>
+            <li><img src="../img/tawevents-logo.png" class="imagen-corporativa"></li>
             <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="/salir">Cerrar sesión</a></li>
             <li class="right elem-nav" style="margin-top: 25px;"><span class="navbar-text">
                 Has iniciado sesión como: <%=usuario.getNickname()%>

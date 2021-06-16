@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Menu</title>
-        <link rel="stylesheet" href="menuCSS.css">
+        <link rel="stylesheet" href="../../../resources/static/css/menuCSS.css">
     </head>
     <%
         UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");

@@ -34,8 +34,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-        <link rel="stylesheet" href="busquedaHomeUsuarioDeEventosCSS.css">
-        <link rel="stylesheet" href="menuEventosCSS.css">
+        <link rel="stylesheet" href="../css/busquedaHomeUsuarioDeEventosCSS.css">
+        <link rel="stylesheet" href="../css/menuEventosCSS.css">
 
         <title>Explorar</title>
 
@@ -64,7 +64,7 @@
         <ul class="topnav">
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="/usuario/home">Home</a></li>
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="/usuario/explorar/1">Explorar</a></li>
-            <li><img src="Imagenes/tawevents-logo.png" class="imagen-corporativa"></li>
+            <li><img src="../img/tawevents-logo.png" class="imagen-corporativa"></li>
             <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="/salir">Cerrar sesión</a></li>
             <li class="right elem-nav" style="margin-top: 25px;"><span class="navbar-text">
                 Has iniciado sesión como: <%=usuario.getNickname()%>
