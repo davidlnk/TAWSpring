@@ -25,8 +25,23 @@ public class InicioController {
 
 
     @GetMapping("/")
-    public String doInit() {
-        return "inicioSesion";
+    public String doInit(HttpSession session) {
+        String strTo = "inicioSesion";
+        UsuarioDTO usuarioRegistrado = (UsuarioDTO) session.getAttribute("usuario");
+        if(usuarioRegistrado != null){
+            if (usuarioRegistrado.getTipoUsuario().equals("administrador")) {
+                strTo = "redirect:admin/home";
+            } else if (usuarioRegistrado.getTipoUsuario().equals("creadordeeventos")) {
+                // TODO: strTo = "ServletCreadorDeEventosListar";
+            } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {
+
+            } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
+                strTo = "homeAnalista";
+            } else {
+                strTo = "redirect:usuario/home";
+            }
+        }
+        return strTo;
     }
 
     @PostMapping("/autenticar")

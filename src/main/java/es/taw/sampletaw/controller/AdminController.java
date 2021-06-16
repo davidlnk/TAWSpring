@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -193,13 +194,15 @@ public class AdminController {
         } else {
 
             UsuarioDTO us = this.usuarioService.buscarUsuario(Integer.parseInt(id));
+            model.addAttribute("usuarioEditar", us);
             if(us.getTipoUsuario().equals("usuariodeeventos")){
-                strTo = "editarUsuarioDeEventos";
+
                 UsuarioDeEventosDTO usEv = this.usuarioDeEventosService.findById(us.getUsuarioDeEventos()).getDTO();
                 model.addAttribute("usuarioEventoEditar", usEv);
+                strTo = "editarUsuarioDeEventos";
             }
 
-            model.addAttribute("usuarioEditar", us);
+
 
         }
         return strTo;
@@ -259,7 +262,8 @@ public class AdminController {
                     if(!strClave.equals(strClaveConf)){
                         strError = "Error de creación: las contraseñas son diferentes";
                         model.addAttribute("errorContra", strError);
-                        return ("redirect:/admin/editarusuario/"+usuarioNuevo.getId());
+                        model.addAttribute("usuarioEditar", usuarioNuevo);
+                        return ("crearEditarUsuario");
                     }else{
                         UsuarioDTO i = this.usuarioService.buscarUsuarioNick(strNick);
                         if(i == null || i.getId().equals(usuarioNuevo.getId())){
@@ -268,7 +272,8 @@ public class AdminController {
                         }else{
                             strError = "Error de creación: este nick está cogido";
                             model.addAttribute("errorNick", strError);
-                            return ("redirect:/admin/editarusuario/"+usuarioNuevo.getId());
+                            model.addAttribute("usuarioEditar", usuarioNuevo);
+                            return ("crearEditarUsuario");
                         }
                     }
 
@@ -279,7 +284,6 @@ public class AdminController {
     @GetMapping("/crearusuario")
     public String doCrearUs ( HttpSession session, Model model) {
         UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");
-        String strTo = "crearEditarUsuario";
         if (usuario == null) {
             model.addAttribute("errorRegistro", "Usuario no autenticado");
             return ("redirect:/");
@@ -346,7 +350,7 @@ public class AdminController {
             Pattern regexPattern = Pattern.compile("^(.+)@(.+)$");
             Matcher regMatcher   = regexPattern.matcher(correoElectronico);
 
-            UsuarioDTO usuarioBase = this.usuarioService.buscarUsuario(new Integer(id));
+            UsuarioDTO usuarioBase = this.usuarioService.buscarUsuario(Integer.parseInt(id));
             UsuarioDeEventosDTO usuarioEventos = this.usuarioDeEventosService.findById(usuarioBase.getUsuarioDeEventos()).getDTO();
 
             Boolean nickUnico = usuarioService.esNickUnico(nick);
@@ -355,10 +359,14 @@ public class AdminController {
             Boolean coincidenContrasenas = contrasena.equals(confirmarContrasena);
             if(fechaNacimiento.after(new Date())){
                 model.addAttribute("errorFecha", "Error de edición: fecha no válida");
-                return ("redirect:/admin/editar/" + usuarioBase.getId());
+                model.addAttribute("usuarioEventoEditar", usuarioEventos);
+                model.addAttribute("usuarioEditar", usuarioBase);
+                return ("editarUsuarioDeEventos");
             }else{
                 if ((!nickUnico && !nick.equals(usuarioBase.getNickname())) || (!correoUnico && !correoElectronico.equals(usuarioEventos.getCorreo()))  || !formatoCorreoValido || !coincidenContrasenas) { // Si hay algun error en el formulario
-                    strTo = "/admin/editarusuario/" + usuarioBase.getId();
+                    model.addAttribute("usuarioEventoEditar", usuarioEventos);
+                    model.addAttribute("usuarioEditar", usuarioBase);
+                    strTo = "editarUsuarioDeEventos";
                     if (!nickUnico && !nick.equals(usuarioBase.getNickname())) { // Si ya hay un usuario con ese nick
                         strErrorNick = "Error de edición: el nick introducido ya está en uso";
                         model.addAttribute("errorNick", strErrorNick);
@@ -383,6 +391,114 @@ public class AdminController {
                 }
             }
 
+        }
+    }
+
+    @GetMapping("/borrarevento/{idE}")
+    public String doBorrarEv (@PathVariable("idE") String idE, HttpSession session, Model model) {
+        UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");
+        if (usuario == null) {
+            model.addAttribute("errorRegistro", "Usuario no autenticado");
+            return ("redirect:/");
+        } else {
+            EventoDTO elEvento = this.eventoService.buscarEvento(Integer.parseInt(idE));
+            this.eventoService.borrarEvento(elEvento);
+            return ("redirect:/admin/eventos");
+        }
+    }
+
+    @GetMapping("/editarevento/{idE}")
+    public String doEditarEv (@PathVariable("idE") String idE, HttpSession session, Model model) {
+        UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");
+        String strTo = "crearEditarUsuario";
+        if (usuario == null) {
+            model.addAttribute("errorRegistro", "Usuario no autenticado");
+            return ("redirect:/");
+        } else {
+            if (idE != null) { // Es editar usuario
+                EventoDTO us = this.eventoService.buscarEvento(Integer.parseInt(idE));
+                model.addAttribute("eventoEditar", us);
+                String etiquetas = this.eventoService.getEtiquetasToString(us);
+                model.addAttribute("etiquetas", etiquetas);
+            }
+        }
+        return ("editarEventoAdmin");
+    }
+
+    @GetMapping("/guardarevento")
+    public String doGuardarEv (@RequestParam(value = "id", required = false) String eventoId, @RequestParam("titulo") String titulo, @RequestParam("descripcion") String descripcion, @RequestParam("precio") String precio, @RequestParam("imagen") String imagen, @RequestParam("etiquetas") String etiquetas, @RequestParam("fecha") String fech, @RequestParam("fecha_limite_entradas") String fechLim, @RequestParam("aforo_maximo") String aforo_maximo, @RequestParam("maximo_entradas_usuario") String maximo_entradas_usuario, @RequestParam("asientos_asignados") String asientos_asignados, @RequestParam("numero_filas") String numero_filas, @RequestParam("asientos_por_fila") String asientos_por_fila, HttpSession session, Model model) {
+        UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if(titulo != null){
+            try {
+                titulo = new String(titulo.getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        if(descripcion != null){
+            try {
+                descripcion = new String(descripcion.getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(etiquetas != null){
+            try {
+                etiquetas = new String(etiquetas.getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        Date fecha = null;
+        try {
+            fecha = format.parse(fech);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date fecha_limite_entradas = null;
+        try {
+            fecha_limite_entradas = format.parse(fechLim);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(eventoId != null){
+            EventoDTO eventoEditar = eventoService.buscarEvento(Integer.parseInt(eventoId));
+            if(fecha.before(fecha_limite_entradas)){
+                model.addAttribute("eventoEditar", eventoEditar);
+                String etiquetass = this.eventoService.getEtiquetasToString(eventoEditar);
+                model.addAttribute("etiquetas", etiquetass);
+                model.addAttribute("errorRegistro", "Error de edición: fechas no válidas");
+                return("editarEventoAdmin");
+            }else{
+                eventoService.editarEvento(Integer.parseInt(eventoId), usuario.getId(), titulo, descripcion, etiquetas, Integer.parseInt(precio), imagen, fecha, fecha_limite_entradas, Integer.parseInt(aforo_maximo), Integer.parseInt(maximo_entradas_usuario), asientos_asignados, numero_filas, asientos_por_fila);
+                return ("redirect:/admin/eventos");
+            }
+
+        }else{
+
+            if(fecha.before(fecha_limite_entradas)){
+                model.addAttribute("errorRegistro", "Error de creación: fechas no válidas");
+                return("crearEventoAdmin");
+            }else{
+                eventoService.crearEvento(usuario.getId(), titulo, descripcion, etiquetas, Integer.parseInt(precio), imagen, fecha, fecha_limite_entradas, Integer.parseInt(aforo_maximo), Integer.parseInt(maximo_entradas_usuario), asientos_asignados, numero_filas, asientos_por_fila);
+                return ("redirect:/admin/eventos");
+            }
+
+        }
+    }
+
+    @GetMapping("/crearevento")
+    public String doCrearEv ( HttpSession session, Model model) {
+        UsuarioDTO usuario = (UsuarioDTO)session.getAttribute("usuario");
+        String strTo = "crearEditarUsuario";
+        if (usuario == null) {
+            model.addAttribute("errorRegistro", "Usuario no autenticado");
+            return ("redirect:/");
+        } else {
+            return "crearEventoAdmin";
         }
     }
 

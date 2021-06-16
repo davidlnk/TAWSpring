@@ -4,9 +4,9 @@
     Author     : Ivan
 --%>
 
-<%@page import="tawevents.dto.EventoDTO"%>
-<%@page import="tawevents.dto.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ page import="es.taw.sampletaw.dto.UsuarioDTO" %>
+<%@ page import="es.taw.sampletaw.dto.EventoDTO" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar evento</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-        <link rel="stylesheet" href="../../../resources/static/css/crearEditarUsuarioDeEventosCSS.css">
+        <link rel="stylesheet" href="../css/crearEditarUsuarioDeEventosCSS.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -56,11 +56,11 @@
     %>
     <body>
         
-        <img src="Imagenes/tawevents-logo.png" class="imagen-corporativa">
+        <img src="../img/tawevents-logo.png" class="imagen-corporativa">
     <jsp:include page="menu.jsp" />
     <div class="signup-form">
         
-        <form action="ServletEventoGuardarAdmin">
+        <form action="/admin/guardarevento">
             <div class="form-group">
                 <h2>Datos del evento</h2>
                 <input type="hidden" name="id" value="<%= strId %>" />
