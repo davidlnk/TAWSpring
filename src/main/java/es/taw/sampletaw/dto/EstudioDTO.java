@@ -5,6 +5,8 @@
  */
 package es.taw.sampletaw.dto;
 
+import es.taw.sampletaw.entity.Estudio;
+
 import java.util.Date;
 
 /**
@@ -17,7 +19,19 @@ public class EstudioDTO {
     private String descripcion;
     private Date fecha;
     private String busqueda;
-     
+
+    public EstudioDTO (UsuarioDTO usuarioDTO) {
+        id = 0;
+        analista = usuarioDTO.getId();
+        descripcion = "";
+        fecha = new Date();
+        busqueda = "-,-,-,-,-,-,-,-,-,-,-,-,-,-,-";
+    }
+
+    public EstudioDTO () {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }

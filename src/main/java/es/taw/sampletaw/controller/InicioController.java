@@ -36,7 +36,7 @@ public class InicioController {
             } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {
 
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
-                strTo = "homeAnalista";
+                strTo = "redirect:analista/";
             } else {
                 strTo = "redirect:usuario/home";
             }
@@ -73,7 +73,7 @@ public class InicioController {
                     } else if (usuario.getTipoUsuario().equals("teleoperador")) {
 
                     } else if (usuario.getTipoUsuario().equals("analistadeeventos")) {
-                        strTo = "homeAnalista";
+                        strTo = "redirect:analista/";
                     } else {
                         strTo = "redirect:usuario/home";
                     }
@@ -87,7 +87,7 @@ public class InicioController {
             } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {
 
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
-                strTo = "homeAnalista";
+                strTo = "redirect:analista/";
             } else {
                 strTo = "redirect:usuario/home";
             }
