@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/analistaCSS.css">
+    <link rel="stylesheet" href="/css/analistaCSS.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,14 +27,15 @@
 <jsp:forward page="inicioSesion.jsp"/>
 <%
     }
-    String confirmacion = request.getParameter("confirmacion");
-    String strID = request.getParameter("id"); // id del estudio seleccionado para eliminarse
+
+    String strID = (String) request.getAttribute("strID"); // id del estudio seleccionado para eliminarse
+    String confirmacion = (String) request.getAttribute("confirmacion"); // Si es idk se tiene que confirmar si se borra o no
 
     List<EstudioDTO> lista = (List<EstudioDTO>) request.getAttribute("lista");
 %>
 <body>
 <div class="head">
-    <img src="../img/tawevents-logo.png" class="imagen-corporativa" align="center">
+    <img src="/img/tawevents-logo.png" class="imagen-corporativa" align="center">
     <ul class="menuSuperior">
         <li>
             <a href="/analista/" class="active"> Ver todos mis estudios </a>
@@ -50,38 +51,43 @@
 <div class="container">
     <br/>
     <form:form method="post" action="/analista/listar" modelAttribute="filtro">
-        <div class="row">
-            <div class="col">
-                Filtrar estudios ... <br/>
-                Desde: <form:input type="date" path="desdeFecha"/> <br/>
-                Hasta: &thinsp; <form:input type="date" path="hastaFecha"/> <br/> <br/>
+        <h4>Filtrar estudios ... </h4>
+        <div class="container row">
+            <div class="col-md-auto">
+                Desde: <form:input type="date" path="desdeFecha"/> &nbsp; hasta: <form:input type="date"
+                                                                                             path="hastaFecha"/>
+                <br/> <br/>
             </div>
-            <div class="col">
-                Ordenar desde ... <br/>
-                &nbsp; <form:radiobutton path="ordenporfecha" value="a"/> Los antiguos <br/>
-                &nbsp; <form:radiobutton path="ordenporfecha" value="r"/> Los recientes <br/>
-                <input class="btn-default" align="right" type="submit" value="Filtrar Estudios" name="filtrar"/>
+            <div class="col-md-auto">
+                Descripción: <form:input type="text" path="descripcion"/> <br/> <br/>
+            </div>
+            <div class="col-md-auto">
+                Ordenar por fecha:
+                &emsp; <form:radiobutton path="ordenporfecha" value="a"/> Ascendente
+                &emsp; <form:radiobutton path="ordenporfecha" value="r"/> Descendente
+            </div>
+            <div class="col-md-auto">
+                <input class="btn-default" align="right" type="submit" value="Filtrar Estudios" name="filtrar"/> <br/> <br/>
             </div>
         </div>
     </form:form>
     <%
         if (confirmacion != null && confirmacion.equals("idk") && strID != null) {
     %>
-    <div class="alert alert-danger confirmarEliminar" role="alert" id="eliminarEstudio" align="center">
-        <p>
-            <strong> ¿Estás seguro de que quieres eliminar el estudio con id=<%=strID%>? </strong>
-            <a href="ServletAnalistaEliminar?confirmacion=y&id=<%=strID%>"> <input type="submit"
-                                                                                   value="Si, estoy seguro"/></a>
-            <a href="ServletAnalistaEliminar?confirmacion=n&id=<%=strID%>"> <input type="submit"
-                                                                                   value="No eliminar"/></a>
-        </p>
+    <div class="row alert alert-danger confirmarEliminar" role="alert" id="eliminarEstudio" align="center">
+        <strong> ¿Estás seguro de que quieres eliminar el estudio con id=<%=strID%>? </strong>
+        &emsp; &emsp; &emsp; &emsp; &emsp;
+        <a href="/analista/eliminar/y/<%=strID%>"> <input type="submit"
+                                                          value="Si, estoy seguro"/></a>
+        <a href="/analista/eliminar/n/<%=strID%>"> <input type="submit"
+                                                          value="No eliminar"/></a>
     </div>
     <%
         }
     %>
 
-    <div class="table-responsive ">
-        <table class="table table-striped center scroll" align="center" border="2" cellpadding="6">
+    <div class="table-responsive">
+        <table class="table table-striped center scroll" align="center" border="2" cellpadding="3">
             <thead>
             <tr>
                 <th class="text-nowrap"> ID</th>
@@ -104,10 +110,12 @@
                 </td>
                 <td><%= estudio.getDescripcion()%>
                 </td>
-                <td class="text-nowrap"><a href="/analista/ver/ver/<%=estudio.getId()%>"> +info </a>
+                <td class="text-nowrap">
+                    <a href="/analista/ver/ver/<%=estudio.getId()%>"> Resultados</a>
                 </td>
-                <td class="text-nowrap" id="eliminar"><a
-                        href="ServletAnalistaEliminar?confirmacion=idk&id=<%=estudio.getId()%>"> Eliminar </a></td>
+                <td class="text-nowrap" id="eliminar">
+                    <a href="/analista/eliminar/idk/<%=estudio.getId()%>"> Eliminar </a>
+                </td>
             </tr>
             <%
                     }

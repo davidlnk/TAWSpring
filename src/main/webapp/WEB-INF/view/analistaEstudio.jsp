@@ -15,10 +15,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/analistaCSS.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/analistaCSS.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title> Analista de Eventos - Ver Estudios </title>
 </head>
@@ -59,13 +59,13 @@
 %>
 <body>
 <div class="head">
-    <img src="../img/tawevents-logo.png" class="imagen-corporativa" align="center"/>
+    <img src="/img/tawevents-logo.png" class="imagen-corporativa" align="center"/>
     <ul class="menuSuperior">
         <li>
             <a href="/analista/"> Ver todos mis estudios </a>
         </li>
         <li>
-            <a href="/analista/verEstudio/crear/null" <%=crear ? "class=\"active\"" : ""%>> Crear nuevo </a>
+            <a href="/analista/ver/crear/nulo" <%=crear ? "class=\"active\"" : ""%>> Crear nuevo </a>
         </li>
         <%
             if (ver) {
@@ -74,7 +74,7 @@
             <a href="" class="active"> Ver resultados </a>
         </li>
         <li>
-            <a href="/analista/estudio/crear/<%=estudio.getId()%>"> Crear desde </a>
+            <a href="/analista/ver/crear/<%=estudio.getId()%>"> Crear desde </a>
         </li>
         <%
             }
@@ -87,6 +87,7 @@
 
 <div class="container">
     <form method="post" action="/analista/guardar">
+
         <br/>
         <%
             if (modo.equals("ver")) {
@@ -104,8 +105,9 @@
         <div class="container-fluid">
             Descripción: <br/>
             <div id="descripcion-estudio" class="form-group">
-                <input type="text" name="descripcion" title="Describa el análisis" maxlength="100" value="<%=(estudio == null) ? "" : estudio.getDescripcion()%>"
-                       class="form-control" size="30" <%=disabled%>  required="true"/>
+                <input type="text" name="descripcion" title="Describa el análisis" maxlength="100"
+                       value="<%=(estudio == null) ? "" : estudio.getDescripcion()%>"
+                       class="form-control" size="30" <%=disabled%> required="true"/>
             </div>
 
             <div class="row">
@@ -144,9 +146,15 @@
                         <div class="col">
                             Sexo:
                             <div id="filtrosexo">
-                                <input type="radio" name="sexo" value="m" id="mujer" <%=(datos.get(8).equals("m") ? "checked" : "")%> <%=disabled%> /> Mujer <br/>
-                                <input type="radio" name="sexo" value="h" id="hombre" <%=(datos.get(8).equals("m") ? "checked" : "")%> <%=disabled%> /> Hombre <br/>
-                                <input type="radio" name="sexo" value="-" id="otro" <%=(datos.get(8).isEmpty() ? "checked" : "")%> <%=disabled%> /> Todos <br/>
+                                <input type="radio" name="sexo" value="m"
+                                       id="mujer" <%=(datos.get(8).equals("m") ? "checked" : "")%> <%=disabled%> />
+                                Mujer <br/>
+                                <input type="radio" name="sexo" value="h"
+                                       id="hombre" <%=(datos.get(8).equals("m") ? "checked" : "")%> <%=disabled%> />
+                                Hombre <br/>
+                                <input type="radio" name="sexo" value=""
+                                       id="otro" <%=(datos.get(8).isEmpty() ? "checked" : "")%> <%=disabled%> /> Todos
+                                <br/>
                             </div>
                             <br/>
                         </div>
@@ -154,7 +162,8 @@
                             Ciudad:
                             <select name="ciudad" <%=disabled%>
                                     title="Si se deja en blanco no se filtra por ciudad">
-                                <option value="<%=datos.get(9)%>"> <%=datos.get(9)%> </option>
+                                <option value="<%=datos.get(9)%>"><%=datos.get(9).isEmpty() ? "Cualquier ciudad" : datos.get(9)%>
+                                </option>
                                 <%
                                     if (ciudades != null) {
                                         for (String ciudad : ciudades) {
@@ -162,10 +171,6 @@
                                 %>
                                 <option value="<%= ciudad%>"><%= ciudad%>
                                 </option>
-                                <%
-                                } else {
-                                %>
-                                <option value=""> Cualquier ciudad</option>
                                 <%
                                             }
                                         }
@@ -176,13 +181,16 @@
                         <div class="col"></div>
                     </div>
                     Edad entre &nbsp
-                    <input type="number" name="edad_min" value="<%=datos.get(10)%>" size="5" <%=disabled%>
+                    <input type="number" name="edad_min" value="<%=datos.get(10).equals("0") ? "" : datos.get(10)%>"
+                           size="5" <%=disabled%>
                            title="Si no se rellena se supone que es 0"/> &nbsp y &nbsp
                     <input type="number" name="edad_max" value="<%=datos.get(11)%>" size="5" <%=disabled%>
                            title="Si no se rellena se supone que no hay límite de edad"/> <br/> <br/>
 
-                    Nombre: &nbsp; <input type="text" name="nombre" value="<%=datos.get(12)%>" size="30" <%=disabled%> /> <br/>
-                    Apellidos: <input type="text" name="apellidos" value="<%=datos.get(13)%>" size="30" <%=disabled%> /> <br/>
+                    Nombre: &nbsp; <input type="text" name="nombre" value="<%=datos.get(12)%>"
+                                          size="30" <%=disabled%> /> <br/>
+                    Apellidos: <input type="text" name="apellidos" value="<%=datos.get(13)%>" size="30" <%=disabled%> />
+                    <br/>
                     <br/>
 
                     Tipo de usuario:
@@ -207,21 +215,21 @@
                             }
                         %>
                     </select> <br/> <br/>
-
-                    <%
-                        if (crear) {
-                    %>
-                    <input type="submit" value="Guardar" name="guardar"/> <br/>
-
-                    <%
-                    } else if (ver) {
-                    %>
                 </div>
             </div>
         </div>
+        <%
+            if (crear) {
+        %>
+
+        <input type="submit" value="Guardar" name="guardar"/> <br/>
+
+        <%
+        } else if (ver) {
+        %>
         <div class="table-responsive text-nowrap">
             <h2> Resultados </h2>
-            <table class="table table-striped center scroll" align="center" border="2" cellpadding="6">
+            <table class="table table-striped center scroll" align="center" border="2" cellpadding="3">
                 <thead>
                 <tr>
                     <th> ID</th>
@@ -288,106 +296,5 @@
         </div>
     </form>
 </div>
-
 </body>
 </html>
-
-<style>
-    body {
-        color: black;
-        /* color: #fff; */
-        /* background: #63738a; */
-        background: white;
-        font-family: 'Roboto', sans-serif;
-        font-size: large;
-    }
-
-    .cabeza {
-        padding: 0em;
-        position: fixed;
-        width: 100%;
-        background: white;
-        margin-top: -155px;
-    }
-
-    .cuerpo {
-        margin: auto;
-        margin-top: 155px;
-        width: 76%;
-        padding: 20px;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-    }
-
-    li {
-        float: left;
-        font-size: larger;
-    }
-
-    li:first-child {
-        margin-left: 16%;
-    }
-
-    li:last-child {
-        margin-right: 16%;
-    }
-
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #111;
-        color: burlywood;
-        text-decoration: none;
-    }
-
-    .active {
-        background-color: #006633;
-    }
-
-    .imagen-corporativa {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 165px;
-        height: 98px;
-    }
-
-    .filtroEstudioCol {
-        float: left;
-        width: 50%;
-    }
-
-    .filtroEstudio:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    #eliminar a {
-        color: #990000;
-    }
-
-    #filtrosexo {
-        padding-left: 1em;
-    }
-
-    input[type="number"] {
-        width: 100px;
-    }
-
-    .container {
-        min-width: 1280px;
-    }
-</style>

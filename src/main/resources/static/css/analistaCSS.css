@@ -61,6 +61,26 @@ li a:hover {
     text-decoration: none;
 }
 
+.enlacesubmit {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+li button:hover {
+    background-color: #111;
+    color: burlywood;
+    text-decoration: none;
+}
+
 .active {
     background-color: #006633;
 }
@@ -86,6 +106,32 @@ li a:hover {
 
 #eliminar a {
     color: #990000;
+}
+
+.linkBotonVer {
+    color: #0d6efd;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.linkBotonEliminar {
+    color: #990000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 #filtrosexo {
