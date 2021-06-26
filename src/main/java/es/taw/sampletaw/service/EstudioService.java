@@ -261,7 +261,7 @@ public class EstudioService {
     }
 
     private boolean analizarPorFiltrosDeEvento(Usuario u, UsuarioDeEventos ude, List<String> datos) {
-        if (ude == null) {
+        if (ude == null || noSeUsanFiltrosDeEvento(datos)) {
             return true;
         }
         Iterator<Publico> it = u.getUsuarioDeEventos().getPublicoList().iterator();
@@ -301,6 +301,16 @@ public class EstudioService {
         }
 
         return false;
+    }
+
+    public boolean noSeUsanFiltrosDeEvento(List<String> datos) {
+        if (datos.get(0).isEmpty() && datos.get(1).isEmpty() && datos.get(2).isEmpty()
+                && datos.get(3).equals("OFF") && datos.get(4).equals("OFF")
+                && datos.get(6).isEmpty() && datos.get(7).isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean edadEnRango(Date fechaNacimiento, String edad_min, String edad_max) {
