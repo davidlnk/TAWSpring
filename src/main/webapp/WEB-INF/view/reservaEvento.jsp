@@ -32,8 +32,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/reservaEventoCSS.css">
-        <link rel="stylesheet" href="../css/menuEventosCSS.css">
+        <link rel="stylesheet" href="/css/reservaEventoCSS.css">
+        <link rel="stylesheet" href="/css/menuEventosCSS.css">
 
         <title>Reserva</title>
 
@@ -63,7 +63,7 @@
         <ul class="topnav">
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="pag-prin btn btn-outline-success" href="/usuario/home">Home</a></li>
             <li class="elem-nav" style="margin-top: 25px;"><a role="button" class="explorar btn btn-outline-success" href="/usuario/explorar/1">Explorar</a></li>
-            <li><img src="../img/tawevents-logo.png" class="imagen-corporativa"></li>
+            <li><img src="/img/tawevents-logo.png" class="imagen-corporativa"></li>
             <li class="right elem-nav" style="margin-top: 25px;"><a role="button" class="nav-cerrar-sesion btn btn-outline-success" href="/salir">Cerrar sesión</a></li>
             <li class="right elem-nav" style="margin-top: 25px;"><span class="navbar-text">
                 Has iniciado sesión como: <%=usuario.getNickname()%>
@@ -157,7 +157,7 @@
             if (evento.getAsientosAsignados() && date.before(evento.getFechaLimEntradas()) && evento.getAforoMax() <= 100) {
         %>
         <div class="container-fluid card col mb-4">
-            <img src="../img/theatre-stage.png" class="imagen-escenario">
+            <img src="/img/theatre-stage.png" class="imagen-escenario">
             <%
                 for (int i = 0; i < ocupados.length; i++) {
             %>
