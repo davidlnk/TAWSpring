@@ -5,24 +5,14 @@
  */
 package es.taw.sampletaw.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import es.taw.sampletaw.dao.EtiquetaRepository;
 import es.taw.sampletaw.dao.EventoRepository;
 import es.taw.sampletaw.dao.UsuarioDeEventosRepository;
 import es.taw.sampletaw.dao.UsuarioRepository;
-import es.taw.sampletaw.dto.EtiquetaDTO;
-import es.taw.sampletaw.dto.EventoDTO;
-import es.taw.sampletaw.dto.PublicoDTO;
-import es.taw.sampletaw.dto.UsuarioDeEventosDTO;
-import es.taw.sampletaw.entity.Etiqueta;
-import es.taw.sampletaw.entity.Evento;
-import es.taw.sampletaw.entity.Publico;
-import es.taw.sampletaw.entity.UsuarioDeEventos;
+import es.taw.sampletaw.dto.*;
+import es.taw.sampletaw.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventoService {
 
-//    private EtiquetaService etiquetaService;
+//  private EtiquetaService etiquetaService;
     private EtiquetaRepository etiquetaRepository;
     private UsuarioRepository usuarioRepository;
     private EventoRepository eventoRepository;
@@ -117,9 +107,23 @@ public class EventoService {
          return convertirAListaDTO(lista);
      }
 
+    public EventoDTO findByTituloExacto(String titulo){
+        Evento ev = eventoRepository.findByTituloExacto(titulo);
+        return ev.getDTO();
+    }
+
      public EventoDTO find(int id){
          return eventoRepository.findById(id).get().getDTO();
      }
+
+    public EventoDTO find2(int id){
+        Evento evento = new Evento();
+        Optional<Evento> e = eventoRepository.findById(id);
+        if(e.isPresent()){
+            evento = e.get();
+        }
+        return evento.getDTO();
+    }
 
      public List<EventoDTO> findAll(){
          return convertirAListaDTO(eventoRepository.findAll());
@@ -270,6 +274,50 @@ public class EventoService {
         } else {
             return null;
         }
+    }
+
+    public EventoDTO buscarEvento2 (Integer id) {
+        Optional<Evento> eventoOpt = this.eventoRepository.findById(id);
+        if (eventoOpt.isPresent()) {
+            return eventoOpt.get().getDTO();
+        } else {
+            return null;
+        }
+    }
+
+    public int findIdMasAlta() {
+        return eventoRepository.findIdMasAlta();
+    }
+
+    public int findIdMasAlta2(){
+        return eventoRepository.findIdsMasAltas().get(0);
+    }
+
+    public void editarEvento2 (Integer eventoId, Integer idUsuario, String titulo, String descripcion, Integer precio, String imagen, Date fecha, Date fecha_limite_entradas, Integer aforo_maximo, Integer maximo_entradas_usuario, String asientos_asignados, String numero_filas, String asientos_por_fila) {
+        Optional<Evento> eventoEditarOpt = eventoRepository.findById(eventoId);
+        Evento eventoEditar = new Evento();
+        if(eventoEditarOpt.isPresent()){
+            eventoEditar = eventoEditarOpt.get();
+        }
+        eventoEditar.setTitulo(titulo);
+        eventoEditar.setDescripcion(descripcion);
+        eventoEditar.setPrecioEntrada(precio);
+        eventoEditar.setImagen(imagen);
+        eventoEditar.setFecha(fecha);
+        eventoEditar.setFechaLimEntradas(fecha_limite_entradas);
+        eventoEditar.setAforoMax(aforo_maximo);
+        eventoEditar.setMaxEntradasPorUsuario(maximo_entradas_usuario);
+        if("Si".equals(asientos_asignados)){
+            eventoEditar.setAsientosAsignados(true);
+            eventoEditar.setNumFilas(Integer.parseInt(numero_filas));
+            eventoEditar.setAsientosPorFila(Integer.parseInt(asientos_por_fila));
+        }else{
+            eventoEditar.setAsientosAsignados(false);
+            eventoEditar.setNumFilas(null);
+            eventoEditar.setAsientosPorFila(null);
+        }
+
+        eventoRepository.save(eventoEditar);
     }
 
      public void borrarEvento (EventoDTO evento) {

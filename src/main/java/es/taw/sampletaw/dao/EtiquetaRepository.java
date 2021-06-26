@@ -4,6 +4,8 @@ import es.taw.sampletaw.entity.Etiqueta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface EtiquetaRepository extends JpaRepository<Etiqueta, Integer> {
 
     @Query("SELECT e FROM Etiqueta e WHERE e.nombre = :filtro")
@@ -17,4 +19,9 @@ public interface EtiquetaRepository extends JpaRepository<Etiqueta, Integer> {
 
     @Query("SELECT e FROM Etiqueta e WHERE UPPER(e.nombre) = UPPER(:filtro)")
     public Etiqueta findByNombreExacto (String filtro);
+
+    @Query("SELECT e FROM Etiqueta e WHERE UPPER(e.nombre) LIKE UPPER(CONCAT('%', :filtro, '%'))")
+    public List<Etiqueta> findBySimilarNombreMuchas (String filtro);
+
+
 }

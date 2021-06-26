@@ -32,7 +32,7 @@ public class InicioController {
             if (usuarioRegistrado.getTipoUsuario().equals("administrador")) {
                 strTo = "redirect:admin/home";
             } else if (usuarioRegistrado.getTipoUsuario().equals("creadordeeventos")) {
-                // TODO: strTo = "ServletCreadorDeEventosListar";
+                strTo = "redirect:creador/";
             } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {
 
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {
@@ -69,7 +69,7 @@ public class InicioController {
                     if (usuario.getTipoUsuario().equals("administrador")) {
                         strTo = "redirect:admin/home";
                     } else if (usuario.getTipoUsuario().equals("creadordeeventos")) {
-                        // TODO: strTo = "ServletCreadorDeEventosListar";
+                        strTo = "redirect:creador/";
                     } else if (usuario.getTipoUsuario().equals("teleoperador")) {
 
                     } else if (usuario.getTipoUsuario().equals("analistadeeventos")) {
@@ -83,7 +83,7 @@ public class InicioController {
             if (usuarioRegistrado.getTipoUsuario().equals("administrador")) {
                 strTo = "redirect:admin/home";
             } else if (usuarioRegistrado.getTipoUsuario().equals("creadordeeventos")) {
-                // TODO: strTo = "ServletCreadorDeEventosListar";
+                strTo = "redirect:creador/";
             } else if (usuarioRegistrado.getTipoUsuario().equals("teleoperador")) {
 
             } else if (usuarioRegistrado.getTipoUsuario().equals("analistadeeventos")) {

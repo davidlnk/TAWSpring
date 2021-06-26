@@ -14,8 +14,14 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
     @Query("SELECT max(e.id) FROM Evento e")
     public int findIdMasAlta ();
 
+    @Query("SELECT e.id FROM Evento e ORDER BY e.id DESC")
+    public List<Integer> findIdsMasAltas();
+
     @Query("SELECT c FROM Evento c WHERE UPPER(c.titulo) LIKE UPPER(CONCAT('%', :filtro, '%'))")
     public List<Evento> findByTitulo (String filtro);
+
+    @Query("SELECT c FROM Evento c WHERE c.titulo = :filtro")
+    public Evento findByTituloExacto (String filtro);
 
     @Query("SELECT c FROM Evento c WHERE UPPER(c.titulo) LIKE UPPER(CONCAT('%', :filtro, '%'))")
     public List<Evento> findBySimilarNombre (String filtro);

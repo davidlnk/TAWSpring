@@ -7,10 +7,12 @@ package es.taw.sampletaw.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import es.taw.sampletaw.dao.EtiquetaRepository;
 import es.taw.sampletaw.dto.EtiquetaDTO;
 import es.taw.sampletaw.entity.Etiqueta;
+import es.taw.sampletaw.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +77,10 @@ public class EtiquetaService {
          etiquetaRepository.delete(etiquetaRepository.findById(e.getId()).get());
      }
 
+    public void remove2(Integer id){
+        this.etiquetaRepository.deleteById(id);
+    }
+
      public void edit(EtiquetaDTO e){
          etiquetaRepository.save(etiquetaRepository.findById(e.getId()).get());
      }
@@ -91,6 +97,15 @@ public class EtiquetaService {
         } else {
             return null;
         }
+    }
+
+    public List<EtiquetaDTO> findBySimilarNombreMuchas(String nombre){
+        List<Etiqueta> et = etiquetaRepository.findBySimilarNombreMuchas(nombre);
+        return this.convertirAListaDTO(et);
+    }
+
+    public List<EtiquetaDTO> findAll(){
+        return this.convertirAListaDTO(etiquetaRepository.findAll());
     }
 
      public int crearEtiqueta (String nombre) {
